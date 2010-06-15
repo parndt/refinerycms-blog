@@ -30,7 +30,7 @@ Administration panel
 
 RefineryCMS blog's gem requirements are:
 
-* [acts-as-taggable-on](http://github.com/mbleigh/acts-as-taggable-on) --version 2.0.0.rc1
+* [acts-as-taggable-on](http://github.com/mbleigh/acts-as-taggable-on) --version 2.0.2
 * [fattr](http://github.com/ahoward/fattr)
 * [rMagick](http://rubygems.org/gems/rmagick) (a Refinery dependency; this should be already installed)
 
@@ -44,7 +44,7 @@ You need to install [http://github.com/mbleigh/acts-as-taggable-on](http://githu
 
 add the line:
 
-> gem "acts-as-taggable-on", "2.0.0.rc1"
+> gem "acts-as-taggable-on", "2.0.2"
 
 to your Gemfile
 
