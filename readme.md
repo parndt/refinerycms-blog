@@ -40,7 +40,7 @@ Instructions for installing these gems follows below.
 
 You need to install [http://github.com/mbleigh/acts-as-taggable-on](http://github.com/mbleigh/acts-as-taggable-on)
 
-> gem install -v=2.0.0.rc1 acts-as-taggable-on
+> gem install -v=2.0.2 acts-as-taggable-on
 
 add the line:
 
