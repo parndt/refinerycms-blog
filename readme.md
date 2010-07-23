@@ -30,7 +30,7 @@ Administration panel
 
 First, make sure you've run the migration on RefineryCMS (db:setup / db:migrate).
 
-Clone the plugin using the [url found here](#url_field).
+Use ``script/plugin install`` with the [github clone url found here](#url_field).
 
 After the plugin is in place, run the following to install
 
