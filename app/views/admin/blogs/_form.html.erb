@@ -94,6 +94,11 @@
           scrollTop: $('#toggle_advanced_options').parent().offset().top
         }, 250);
       });
+      
+      $('#blog_title').keyup(function(){
+        slug = $(this).val().replace(/\s+/g,'-').replace(/[^a-zA-Z0-9\-]/g,'').toLowerCase();
+        $('#blog_permalink').val(slug);
+      })
     });
   </script>
 <% end %>
