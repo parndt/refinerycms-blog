@@ -3,7 +3,6 @@ class BlogsController < ApplicationController
   before_filter :find_blog, :only => [:comment, :show, :authorize]
   before_filter :find_page, :except => [:captcha, :authorize]
   before_filter :load_blogs, :except => [:captcha, :authorize, :tag, :category, :author, :show]
-  before_filter :load_tags, :except => [:captcha, :authorize]
 
   def index
     present(@page)
@@ -47,8 +46,14 @@ class BlogsController < ApplicationController
     if Raptcha.valid?(params) || BlogSetting.enable_captcha == false
       @comment.approved = true unless BlogSetting.manual_moderation
       if @comment.save
-        flash[:notice] = "Comment was posted successfully! Waiting for approval!"
-        @message = @page[:successful_comment]
+        if BlogSetting.manual_moderation
+          flash[:notice] = "Thank you for your comment. It will appear once it has been approved by our moderators."
+        elsif BlogSetting.enable_approve_comment_by_email
+          flash[:notice] = "Thank you for your comment. You have been emailed to approve this comment before it will appear."
+        else
+          flash[:notice] = @page[:successful_comment]
+        end
+        
         if BlogSetting.enable_email_notification
           begin
             BlogMailer.deliver_notification(@comment, request)
@@ -66,7 +71,8 @@ class BlogsController < ApplicationController
         @comment = @blog.comments.new
       end
     else
-      @message = @page[:invalid_comment]
+      @comment.valid?
+      @comment.errors.add_to_base "Captcha is incorrect"
     end
 
     present(@page)
@@ -90,10 +96,6 @@ class BlogsController < ApplicationController
 protected
   def load_blogs
     @blogs = Blog.published
-
-    if BlogSetting.enable_recent_blogs
-      @recent_blogs = Blog.published(:limit => 5)
-    end
   end
 
   def find_blog
@@ -109,21 +111,7 @@ protected
       if BlogSetting.enable_related_authors
         @related_authors_blogs = @blog.find_related_authors.reject {|blog| !blog.published? && !@blog }
       end
-
-      # in show action, the recent blog exclude the currently displayed blog 
-      if BlogSetting.enable_recent_blogs
-        @recent_blogs = Blog.find(:all,
-                                  :limit => 5,
-                                  :conditions => ["id != ? and publishing_date < ? and draft != ?", @blog.id, Time.now, true],
-                                  :order => "publishing_date DESC")
-      end
     end
-  end
-
-  def load_tags
-    @tags = Blog.published.tag_counts if BlogSetting.enable_tags
-    @categories = Blog.published.category_counts if BlogSetting.enable_categories
-    @authors = Blog.published.author_counts if BlogSetting.enable_authors
   end
 
   def find_page

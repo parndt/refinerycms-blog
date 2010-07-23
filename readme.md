@@ -23,7 +23,7 @@ Blog comments with
 Administration panel
 
 * write blogs
-* manage comments (unread/approved/refused)
+* manage comments (unmoderated/approved/refused)
 * Change settings
 
 ## Dependencies
@@ -32,7 +32,6 @@ RefineryCMS blog's gem requirements are:
 
 * [acts-as-taggable-on](http://github.com/mbleigh/acts-as-taggable-on) --version 2.0.2
 * [fattr](http://github.com/ahoward/fattr)
-* [rMagick](http://rubygems.org/gems/rmagick) (a Refinery dependency; this should be already installed)
 
 Instructions for installing these gems follows below.
 
