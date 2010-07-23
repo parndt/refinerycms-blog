@@ -95,9 +95,9 @@
         }, 250);
       });
       
-      $('#blog_title').keyup(function(){
-        slug = $(this).val().replace(/\s+/g,'-').replace(/[^a-zA-Z0-9\-]/g,'').replace(/-{2,}/,'-').toLowerCase();
-        $('#blog_permalink').val(slug);
+      $('#blog_title').bind('keyup paste blur', function(){
+        slug = $(this).val().replace(/\s+/g,'-').replace(/[^a-zA-Z0-9\-]/g,'').toLowerCase();
+        $('#blog_permalink').val(slug.replace(/\-{2,}/, '-'));
       })
     });
   </script>
