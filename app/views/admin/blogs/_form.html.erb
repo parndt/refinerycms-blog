@@ -1,34 +1,34 @@
 <%= error_messages_for :blog -%>
 <% form_for [:admin, @blog] do |f| -%>
-  
+
   <div class='field'>
     <%= f.label :title -%>
     <%= f.text_field :title, :class => 'larger', :style => 'width: 944px' -%>
   </div>
-    
+
   <div class='field'>
     <%= f.label :excerpt -%>
     <%= f.text_area :excerpt, :rows => 5, :cols => 140, :class => 'wymeditor' -%>
   </div>
-  
+
   <div class='field'>
     <%= f.label :body -%>
     <%= f.text_area :body, :rows => 20, :cols => 140, :class => 'wymeditor' -%>
   </div>
-  
+
   <p>
     <%= link_to "&raquo; Hide/Show Advanced Options", "#",
                 :id => 'toggle_advanced_options',
                 :rel => 'Click to access meta tag settings and menu options' %>
   </p>
-  
+
   <div id='more_options' style="display:none;">
     <div class="hemisquare">
       <div class='field'>
         <%= f.label :publishing_date, "Date published" -%>
         <%= f.datetime_select :publishing_date -%>
       </div>
-    
+
       <div class='field'>
         <label>Allow comments</label>
         <%= f.check_box :allow_comment -%>
@@ -42,14 +42,14 @@
           Allowed characters are: lowercase letters, numbers, underscores and dashes.
         </small>
       </div>
-      
+
       <div class='field'>
         <label>Draft</label>
         <%= f.check_box :draft -%>
         <%= f.label :draft, "Save as Draft", :class => "stripped" %>
       </div>
     </div>
-    
+
     <div class="hemisquare right_side">
       <div class='field'>
         <%= f.label :category_list, "Categories" %>
@@ -58,7 +58,7 @@
           Separate with commas, e.g. "Programming, Web Design"
         </small>
       </div>
-  
+
       <div class='field'>
         <%= f.label :tag_list, "Tags" %>
         <%= f.text_field :tag_list %><br/>
@@ -76,7 +76,7 @@
       </div>
     </div>
   </div>
-  
+
   <%= render :partial => "/shared/admin/form_actions", :locals => {:f => f, :continue_editing => false} %>
 <% end -%>
 
@@ -94,9 +94,12 @@
           scrollTop: $('#toggle_advanced_options').parent().offset().top
         }, 250);
       });
-      
+
       $('#blog_title').keyup(function(){
-        slug = $(this).val().replace(/\s+/g,'-').replace(/[^a-zA-Z0-9\-]/g,'').replace(/-{2,}/,'-').toLowerCase();
+        slug = $(this).val().replace(/\s+/g,'-')
+                            .replace(/[^a-zA-Z0-9\-]/g,'')
+                            .replace(/\-{2,}/,'-')
+                            .toLowerCase();
         $('#blog_permalink').val(slug);
       })
     });
