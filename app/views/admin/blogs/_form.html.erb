@@ -96,11 +96,10 @@
       });
 
       $('#blog_title').keyup(function(e) {
-        slug = $(this).val().replace(/\s+/g,'-')
-                            .replace(/[^a-zA-Z0-9\-]/g,'')
-                            .replace(/\-{2,}/,'-')
-                            .toLowerCase();
-        $('#blog_permalink').val(slug);
+        $('#blog_permalink').val($(this).val().replace(/\s+/g,'-')
+                                              .replace(/[^a-zA-Z0-9\-]/g,'')
+                                              .replace(/\-{2,}/,'-')
+                                              .toLowerCase());
       })
     });
   </script>
