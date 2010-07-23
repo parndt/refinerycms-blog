@@ -95,7 +95,7 @@
         }, 250);
       });
 
-      $('#blog_title').keyup(function(){
+      $('#blog_title').keyup(function(e) {
         slug = $(this).val().replace(/\s+/g,'-')
                             .replace(/[^a-zA-Z0-9\-]/g,'')
                             .replace(/\-{2,}/,'-')
