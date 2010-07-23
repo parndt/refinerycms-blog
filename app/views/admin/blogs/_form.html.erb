@@ -3,17 +3,17 @@
 
   <div class='field'>
     <%= f.label :title -%>
-    <%= f.text_field :title, :class => 'larger', :style => 'width: 944px' -%>
+    <%= f.text_field :title, :class => 'larger widest' -%>
   </div>
 
   <div class='field'>
     <%= f.label :excerpt -%>
-    <%= f.text_area :excerpt, :rows => 5, :cols => 140, :class => 'wymeditor' -%>
+    <%= f.text_area :excerpt, :rows => 5, :class => 'wymeditor widest' -%>
   </div>
 
   <div class='field'>
     <%= f.label :body -%>
-    <%= f.text_area :body, :rows => 20, :cols => 140, :class => 'wymeditor' -%>
+    <%= f.text_area :body, :rows => 20, :class => 'wymeditor widest' -%>
   </div>
 
   <p>
@@ -25,28 +25,30 @@
   <div id='more_options' style="display:none;">
     <div class="hemisquare">
       <div class='field'>
-        <%= f.label :publishing_date, "Date published" -%>
+        <%= f.label :publishing_date -%>
         <%= f.datetime_select :publishing_date -%>
       </div>
 
       <div class='field'>
         <label>Allow comments</label>
         <%= f.check_box :allow_comment -%>
-        <%= f.label :allow_comment, "Allow readers to comment on this post", :class => "stripped" %>
+        <%= f.label :allow_comment, t('.allow_comments'),
+                    :class => "stripped" %>
       </div>
 
       <div class='field'>
         <%= f.label :permalink -%>
-        <b>http://<%=h request.domain %>/blog/<%= f.text_field :permalink -%></b><br/>
-        <small>
-          Allowed characters are: lowercase letters, numbers, underscores and dashes.
-        </small>
+        <b>
+          http://<%=h request.domain %>/blog/<%= f.text_field :permalink -%>
+        </b><br/>
+        <small><%= t('.allowed_characters') %></small>
       </div>
 
       <div class='field'>
         <label>Draft</label>
         <%= f.check_box :draft -%>
-        <%= f.label :draft, "Save as Draft", :class => "stripped" %>
+        <%= f.label :draft, t('.draft'),
+                    :class => "stripped" %>
       </div>
     </div>
 
@@ -54,30 +56,31 @@
       <div class='field'>
         <%= f.label :category_list, "Categories" %>
         <%= f.text_field :category_list %><br/>
-        <small>
-          Separate with commas, e.g. "Programming, Web Design"
-        </small>
+        <small><%= t('.separate.category_list') %></small>
       </div>
 
       <div class='field'>
-        <%= f.label :tag_list, "Tags" %>
+        <%= f.label :tag_list %>
         <%= f.text_field :tag_list %><br/>
-        <small>
-          Separate with commas, e.g. "RefineryCMS, Rails, Models, Validation"
-        </small>
+        <small><%= t('.separate.tag_list') %></small>
       </div>
 
       <div class='field'>
-        <%= f.label :author_list, "Authors" %>
+        <%= f.label :author_list %>
         <%= f.text_field :author_list %><br/>
-        <small>
-          Separate with commas, e.g. "Bob Dylan, Jimi Hendrix, John Lennon"
-        </small>
+        <small><%= t('.separate.author_list') %></small>
       </div>
     </div>
   </div>
 
-  <%= render :partial => "/shared/admin/form_actions", :locals => {:f => f, :continue_editing => false} %>
+  <%= render :partial => "/shared/admin/form_actions",
+             :locals => {
+               :f => f,
+               :continue_editing => false,
+               :delete_title => t('.delete.title'),
+               :delete_confirmation => t('.delete.confirm',
+                                         :title => @blog.title)
+             } %>
 <% end -%>
 
 <% content_for :head do %>
@@ -98,7 +101,7 @@
       $('#blog_title').keyup(function(e) {
         $('#blog_permalink').val($(this).val().replace(/\s+/g,'-')
                                               .replace(/[^a-zA-Z0-9\-]/g,'')
-                                              .replace(/\-{2,}/,'-')
+                                              .replace(/\-{2,}/ig,'-')
                                               .toLowerCase());
       });
     });

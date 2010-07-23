@@ -1,0 +1,32 @@
+en:
+  plugins:
+    blog:
+      title: Blog
+  admin:
+    blogs:
+      form:
+        allow_comments: Allow readers to comment on this post
+        allowed_characters: "Allowed characters are: lowercase letters, numbers, underscores and dashes."
+        draft: Save as Draft
+        separate:
+          category_list: "Separate with commas, e.g. 'Programming, Web Design'"
+          tag_list: "Separate with commas, e.g. 'RefineryCMS, Rails, Models, Validation'"
+          author_list: "Separate with commas, e.g. 'Bob Dylan, Jimi Hendrix, John Lennon'"
+      blog:
+        delete:
+          confirm: "Are you sure you want to remove '{{title}}' forever?"
+          title: Remove this post forever
+  activerecord:
+    attributes:
+      blog:
+        allow_comment: Allow Comment
+        title: Title
+        excerpt: Excerpt
+        body: Body
+        publishing_date: Date Published
+        skip_to_first_child: Skip to first child?
+        permalink: Permalink
+        draft: Draft
+        category_list: Categories
+        tag_list: Tags
+        author_list: Authors
