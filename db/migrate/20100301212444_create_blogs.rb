@@ -22,7 +22,6 @@ class CreateBlogs < ActiveRecord::Migration
     end
 
     create_table :comments do |t|
-      t.string :title
       t.text :body
       t.boolean :approved
       t.string :name

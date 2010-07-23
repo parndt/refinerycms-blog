@@ -1,5 +1,5 @@
 class Admin::CommentsController < Admin::BaseController
-  crudify :comment, :title_attribute => "name", :order => "created_at DESC"
+  crudify :comment, :order => "created_at DESC"
 
   before_filter :find_comment, :only => [:show, :toggle_status, :unmoderated, :destroy]
   before_filter :find_all_comments, :only => [:index]

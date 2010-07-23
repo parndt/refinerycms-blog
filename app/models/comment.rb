@@ -9,14 +9,14 @@ class Comment < ActiveRecord::Base
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i,
                       :message => 'must be valid'
 
-  validates_length_of :name, :email, :title, :within => 3..80
+  validates_length_of :name, :email, :within => 3..80
   validates_length_of :body, :within => 3..1000
   
-  acts_as_indexed :fields => [:title, :body, :name, :email],
+  acts_as_indexed :fields => [:body, :name, :email],
                   :index_file => [Rails.root.to_s, "tmp", "index"]
   
   
-  attr_accessible :name, :email, :body, :title
+  attr_accessible :name, :email, :body
 
   def is_approved?
     true if approved
