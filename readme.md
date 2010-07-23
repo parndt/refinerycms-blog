@@ -26,7 +26,7 @@ Administration panel
 * Manage comments (unmoderated/approved/refused)
 * Change settings
 
-## Installation (as a plugin)
+## Installation
 
 First, make sure you've run the migration on RefineryCMS (db:setup / db:migrate).
 
