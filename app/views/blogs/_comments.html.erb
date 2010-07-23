@@ -2,8 +2,10 @@
 	<h2>Comments</h2>
 	<div id="comments">
 	  <% @blog.comments.approved.each do |comment| %>
-			<p><%=h comment.body %></p>
-			<p>Comment from <%=h comment.name %>, <%= time_ago_in_words comment.created_at %> ago</p>
+			<% div_for comment, :class => cycle('odd','even') do -%>
+			  <p><%=h comment.body %></p>
+			  <p class="commented_by">Comment from <%=h comment.name %>, <%= time_ago_in_words comment.created_at %> ago</p>
+			<% end -%>
 	  <% end %>
 	</div>
 <% end %>
