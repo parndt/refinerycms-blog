@@ -2,7 +2,7 @@
 
 __A blog plugin for the [Refinery](http://github.com/resolve/refinerycms) content management system.__
 
-## Description:
+## Description
 
 Blog post with
 
@@ -14,7 +14,7 @@ Blog post with
 
 Blog comments with
 
-* Title, name, email, body
+* Name, Email, Body
 * Email confirmation by comment author
 * Optional Captcha
 * Optional manual moderation
@@ -22,70 +22,34 @@ Blog comments with
 
 Administration panel
 
-* write blogs
-* manage comments (unmoderated/approved/refused)
+* Write blog posts
+* Manage comments (unmoderated/approved/refused)
 * Change settings
-
-## Dependencies
-
-RefineryCMS blog's gem requirements are:
-
-* [acts-as-taggable-on](http://github.com/mbleigh/acts-as-taggable-on) --version 2.0.2
-* [fattr](http://github.com/ahoward/fattr)
-
-Instructions for installing these gems follow below:
-
-### Tags
-
-You need to install [http://github.com/mbleigh/acts-as-taggable-on](http://github.com/mbleigh/acts-as-taggable-on)
-
-> gem install -v=2.0.2 acts-as-taggable-on
-
-add the line:
-
-> gem "acts-as-taggable-on", "2.0.2"
-
-to your Gemfile
-
-> bundle install
-
-If you are already using acts-as-taggable-on in your app, you may want to remove the migration file for "tags/taggings" tables.
-
-### Captcha
-
-The Captcha uses Raptcha, a really cool "one file lib" that just works from ahoward @ [http://github.com/ahoward/raptcha](http://github.com/ahoward/raptcha)
-If you want to use Captcha, you need [rMagick](http://rubygems.org/gems/rmagick) (which is already a dependency of RefineryCMS) and [fattr](http://github.com/ahoward/fattr):
-
-> gem install fattr
-
-add the line:
-
-> gem "fattr"
-
-to your Gemfile
-
-> bundle install
-
-_The lib is located at /lib/raptcha.rb, you can update it or edit to fit your need._
 
 ## Installation (as a plugin)
 
 First, make sure you've run the migration on RefineryCMS (db:setup / db:migrate).
 
-Deal with the dependencies (see dependencies)
+Clone the plugin using the [url found here](#url_field).
 
-Clone the plugin:
+After the plugin is in place, run the following to install
 
-> script/plugin install git://github.com/unixcharles/refinerycms-blog.git
+    rake refinery:blog:install
+    rake db:migrate
 
-Copy the migration with
+This plugin's gem requirements are:
 
-> rake refinery:blog:install
+* [acts-as-taggable-on v2.0.2](http://github.com/mbleigh/acts-as-taggable-on)
+* [fattr](http://github.com/ahoward/fattr)
 
-& run the migration
+To make tagging work place this in your ``Gemfile``
 
-> rake db:migrate
+    gem 'acts-as-taggable-on', '= 2.0.2'
 
-## Credit
+To make captcha work place this in your ``Gemfile``
 
-This is like the news plugin from Philip Arndt + comments. see: [http://github.com/resolve/refinerycms-news](http://github.com/resolve/refinerycms-news)
+    gem 'fattr'
+
+Now run ``bundle install`` in your application's directory at command line.
+
+__Note: If you are already using acts-as-taggable-on in your app, you may want to remove the migration file for "tags/taggings" tables.__
