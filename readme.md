@@ -33,7 +33,7 @@ RefineryCMS blog's gem requirements are:
 * [acts-as-taggable-on](http://github.com/mbleigh/acts-as-taggable-on) --version 2.0.2
 * [fattr](http://github.com/ahoward/fattr)
 
-Instructions for installing these gems follows below.
+Instructions for installing these gems follow below:
 
 ### Tags
 
@@ -53,7 +53,7 @@ If you are already using acts-as-taggable-on in your app, you may want to remove
 
 ### Captcha
 
-The Captcha use Raptcha, a really cool "one file lib" that just work from ahoward @ [http://github.com/ahoward/raptcha](http://github.com/ahoward/raptcha)
+The Captcha uses Raptcha, a really cool "one file lib" that just works from ahoward @ [http://github.com/ahoward/raptcha](http://github.com/ahoward/raptcha)
 If you want to use Captcha, you need [rMagick](http://rubygems.org/gems/rmagick) (which is already a dependency of RefineryCMS) and [fattr](http://github.com/ahoward/fattr):
 
 > gem install fattr
@@ -88,4 +88,4 @@ Copy the migration with
 
 ## Credit
 
-This is somewhat news plugin from Philip Arndt + comments. see: [http://github.com/resolve/refinerycms-news](http://github.com/resolve/refinerycms-news)
+This is like the news plugin from Philip Arndt + comments. see: [http://github.com/resolve/refinerycms-news](http://github.com/resolve/refinerycms-news)
