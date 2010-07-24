@@ -98,11 +98,11 @@
         }, 250);
       });
 
-      $('#blog_title').keyup(function(e) {
+      $('#blog_title').bind('keyup paste blur', function(e) {
         $('#blog_permalink').val($(this).val().replace(/\s+/g,'-')
                                               .replace(/[^a-zA-Z0-9\-]/g,'')
-                                              .replace(/\-{2,}/ig,'-')
-                                              .toLowerCase());
+                                              .toLowerCase()
+                                              .replace(/\-{2,}/ig,'-'));
       });
     });
   </script>
